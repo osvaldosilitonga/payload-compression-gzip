@@ -12,6 +12,7 @@ func Router(e *echo.Echo) {
 
 	imageV1 := v1.Group("/images")
 	{
+		imageV1.GET("", imagesController.GetAll)
 		imageV1.POST("/upload", imagesController.Upload)
 		imageV1.GET("/download/:id", imagesController.Download)
 	}

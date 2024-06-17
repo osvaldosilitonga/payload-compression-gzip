@@ -13,10 +13,11 @@ func LogrusConfig() middleware.RequestLoggerConfig {
 		LogStatus: true,
 		LogValuesFunc: func(c echo.Context, values middleware.RequestLoggerValues) error {
 			log.WithFields(logrus.Fields{
-				"URI":     values.URI,
-				"Method":  c.Request().Method,
-				"Status":  values.Status,
-				"Latency": values.Latency,
+				"URI":       values.URI,
+				"Method":    c.Request().Method,
+				"Status":    values.Status,
+				"Latency":   values.Latency,
+				"Remote_IP": values.RemoteIP,
 			}).Info("request")
 
 			return nil

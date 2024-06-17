@@ -78,3 +78,35 @@ func (i *Image) Download(c echo.Context) error {
 
 	return c.Attachment(fmt.Sprintf("./assets/server_storage/%v", imgId), imgId)
 }
+
+type Data struct {
+	ImageName string `json:"image_name"`
+	Owner     string `json:"owner"`
+	Email     string `json:"email"`
+}
+
+func (i *Image) GetAll(c echo.Context) error {
+	datas := []Data{
+		{
+			ImageName: "44b45cc9-5db6-4034-933e-7cf30a93bc44_samurai.png",
+			Owner:     "John Doe",
+			Email:     "john.doe@mail.com",
+		},
+		{
+			ImageName: "17240e88-73a4-4f51-bd7a-8afa0944c2bc_samurai.png",
+			Owner:     "Jane Smith",
+			Email:     "jane.smith@mail.com",
+		},
+		{
+			ImageName: "f52b271e-430c-415d-a907-134d62e47b77_samurai.png",
+			Owner:     "Eko Kurniawan",
+			Email:     "eko.kurniawan@mail.com",
+		},
+	}
+
+	return c.JSON(200, echo.Map{
+		"code":    http.StatusOK,
+		"message": "ok",
+		"data":    datas,
+	})
+}
