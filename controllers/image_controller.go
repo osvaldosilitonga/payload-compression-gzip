@@ -8,6 +8,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/gommon/log"
 )
 
 type Image struct{}
@@ -74,9 +75,26 @@ func (i *Image) Upload(c echo.Context) error {
 }
 
 func (i *Image) Download(c echo.Context) error {
-	imgId := c.Param("id")
+	log.Info("Starting to download file")
 
-	return c.Attachment(fmt.Sprintf("./assets/server_storage/%v", imgId), imgId)
+	imgId := c.Param("id")
+	filePath := fmt.Sprintf("./assets/server_storage/%v", imgId)
+
+	// check if the file exists
+	if _, err := os.Stat(filePath); os.IsNotExist(err) {
+		return c.JSON(http.StatusNotFound, echo.Map{
+			"code":    http.StatusNotFound,
+			"message": "file not found",
+		})
+	} else if err != nil {
+		return c.JSON(http.StatusNotFound, echo.Map{
+			"code":    http.StatusInternalServerError,
+			"message": err.Error(),
+		})
+	}
+
+	log.Info(fmt.Sprintf("Serving file: %s", filePath))
+	return c.Attachment(filePath, imgId)
 }
 
 type Data struct {
