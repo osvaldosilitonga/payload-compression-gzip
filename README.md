@@ -31,13 +31,13 @@ Untuk melihat perbedaan antara response dengan kompresi dan response tanpa kompr
 1. Test Pertama - Download File
 
 <figure style="text-align: center;">
-  <img src="./docs/image_without_compression.png" alt="Image without compression">
   <figcaption>1.1 Without Compression</figcaption>
+  <img src="./docs/image_without_compression.png" alt="Image without compression">
 </figure>
 
 <figure style="text-align: center;">
-  <img src="./docs/image_with_gzip_compression.png" alt="Image with Gzip compression">
   <figcaption>1.2 With Gzip Compression</figcaption>
+  <img src="./docs/image_with_gzip_compression.png" alt="Image with Gzip compression">
 </figure>
 
 Pada 2 gambar di atas dapat dilihat perbedaan, dimana gambar 1.1. mengirim sebesar ukuran file aslinya yaitu <b>[32768 bytes data]</b>, sementara pada gambar 1.2 dengan request yang sama namun melakukan kompresi terlebih dahulu, data yang di kirim berukuran <b>[3778 bytes data]</b> dan menggunakan <b>Transfer-Encoding</b>: chunk, yang berarti data dikirim dalam potongan-potongan kecil.
@@ -45,13 +45,13 @@ Pada 2 gambar di atas dapat dilihat perbedaan, dimana gambar 1.1. mengirim sebes
 2. Test Kedua - JSON
 
 <figure style="text-align: center;">
-  <img src="./docs/without_compression.png" alt="JSON without compression">
   <figcaption>2.1 Without Compression</figcaption>
+  <img src="./docs/without_compression.png" alt="JSON without compression">
 </figure>
 
 <figure style="text-align: center;">
-  <img src="./docs/with_gzip_compression.png" alt="JSON with compression">
   <figcaption>2.2 With Compression</figcaption>
+  <img src="./docs/with_gzip_compression.png" alt="JSON with compression">
 </figure>
 
 Perbedaan dapat dilihat dari ukuran data yang dikirim. Pada gambar 2.1 tanpa menerapkan kompresi ukuran data yang dikirim <b>[390 bytes data]</b>, sementara pada gambar 2.2 yang melakukan kompresi ukuran data yang dikirim <b>[250 bytes data]</b>
